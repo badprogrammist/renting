@@ -5,10 +5,27 @@ import renting.event.EventType
 import renting.place.Place
 import renting.place.PlaceEventType
 import renting.tariff.Tariff
+import renting.user.Role
+import renting.user.User
+import renting.user.UserRole
 
 class BootStrap {
 
     def init = { servletContext ->
+
+        def adminRole = new Role(authority: 'ROLE_ADMIN').save()
+        def userRole = new Role(authority: 'ROLE_USER').save()
+
+        def adminUser = new User(username: 'admin', enabled: true, password: 'admin')
+        adminUser.save()
+        def userUser = new User(username: 'user', enabled: true, password: 'user')
+        userUser.save()
+
+        UserRole.create(adminUser, adminRole, false)
+        UserRole.create(userUser, userRole, false)
+
+
+
         def place1 = new Place(title:"Транзистор",capacity: Capacity.LESS_TEN);
         def place2 = new Place(title:"Галактика",description: "Описание галактической империи",capacity: Capacity.FROM_TEN_TO_TWENTY);
 

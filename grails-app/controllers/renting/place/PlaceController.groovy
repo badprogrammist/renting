@@ -1,21 +1,22 @@
 package renting.place
 
 import renting.event.EventService
-import renting.place.Place
+import org.springframework.security.access.annotation.Secured
 
 class PlaceController {
 
     def EventService eventService;
 
+    @Secured(['permitAll'])
     def index() {
     }
 
-
-
+    @Secured(['ROLE_USER'])
     def list() {
         return [places:Place.all];
     }
 
+    @Secured(['ROLE_USER'])
     def view() {
         def placeInstance = Place.get(params.id);
         if(placeInstance) {

@@ -30,7 +30,7 @@
 
 <button onclick="<g:remoteFunction controller='event' action='addEvent' id='${placeInstance.id}' update='place_event_container'/>">Предложить событие</button>
 <div id="place_event_container">
-    <g:render  template="/event/events" model="${[events:events]}"/>
+    <g:render template="/event/events" model="${[events:events]}"/>
 </div>
 
 
