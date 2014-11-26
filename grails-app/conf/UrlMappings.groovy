@@ -7,6 +7,7 @@ class UrlMappings {
             }
         }
         "/places"(controller: "place", action: "list")
+        "/events"(controller: "event", action: "list")
         "/"(view:"/index")
         "500"(view:'/error')
 	}

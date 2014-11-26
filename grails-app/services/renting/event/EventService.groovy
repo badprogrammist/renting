@@ -33,6 +33,10 @@ class EventService {
         }
     }
 
+    def List<Event> getPlaceEvents(Place place) {
+        return Event.findAllByPlace(place);
+    }
+
     class EventServiceException extends Exception {
         EventServiceException(String s) {
             super(s)

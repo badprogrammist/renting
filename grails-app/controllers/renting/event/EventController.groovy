@@ -2,15 +2,17 @@ package renting.event
 
 import renting.Duration
 import renting.Period
-import renting.event.EventType
 import renting.place.Place
-import renting.tariff.Tariff
 
 class EventController {
 
     def EventService eventService;
 
     def index() { }
+
+    def list() {
+        return [events:Event.all];
+    }
 
     def offer() {
         String title = params.title;
@@ -26,7 +28,10 @@ class EventController {
 
         Event event = eventService.offer(info,place,duration,eventDate,eventType);
 
-        return [reservationInstance : event];
+        render(template: "events",model: [events:eventService.getPlaceEvents(place)] );
+    }
 
+    def addEvent() {
+        render(template: "addEvent",model: [placeInstance:Place.get(params.id)]);
     }
 }

@@ -13,10 +13,13 @@
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
   		<asset:stylesheet src="application.css"/>
-		<asset:javascript src="application.js"/>
+		%{--<asset:javascript src="application.js"/>--}%
+		<asset:javascript src="jquery-1.11.1.min.js"/>
 		<g:layoutHead/>
 	</head>
 	<body>
+		<g:link controller="place" action="list">Площадки</g:link>
+		<g:link controller="event" action="list">События</g:link>
 		<g:layoutBody/>
 	</body>
 </html>

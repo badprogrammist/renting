@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <meta name="layout" content="main"/>
+    <title>${placeInstance.title}</title>
 </head>
 
 <body>
@@ -27,19 +28,11 @@
     </g:each>
 </ul>
 
-<g:form controller="event" action="offer">
-    <p><g:textField name="title"/></p>
+<button onclick="<g:remoteFunction controller='event' action='addEvent' id='${placeInstance.id}' update='place_event_container'/>">Предложить событие</button>
+<div id="place_event_container">
+    <g:render  template="/event/events" model="${[events:events]}"/>
+</div>
 
-    <p><g:textArea name="description"/></p>
-    <p><g:datePicker name="eventDate" type="date"/></p>
-    <p>
-        <g:textField name="periodCount"/>
-        <g:select name="period" from="${renting.Period.values()}" optionValue="title"/>
-    </p>
-    <p><g:select name="eventTypeId" from="${renting.event.EventType.list()}" optionValue="title" optionKey="id"/></p>
-    <g:hiddenField name="placeId" value="${placeInstance.id}"/>
-    <g:submitButton name="Зарезервировать"/>
-</g:form>
 
 </body>
 </html>
